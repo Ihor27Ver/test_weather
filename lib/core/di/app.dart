@@ -5,11 +5,6 @@ import 'package:logger/logger.dart';
 
 void registerApp(GetIt getIt) {
   getIt.registerSingleton<Logger>(Logger());
-
-  
-
 }
 
 Logger get logger => GetIt.I<Logger>();
-
-

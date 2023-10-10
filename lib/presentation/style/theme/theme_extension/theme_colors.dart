@@ -45,8 +45,10 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   }
 
   @override
-  ThemeExtension<ThemeColors> lerp(ThemeExtension<ThemeColors>? other,
-      double t,) {
+  ThemeExtension<ThemeColors> lerp(
+    ThemeExtension<ThemeColors>? other,
+    double t,
+  ) {
     if (other is! ThemeColors) {
       return this;
     }
@@ -55,11 +57,11 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           backgroundColor,
       buttonColor: Color.lerp(buttonColor, other.buttonColor, t) ?? buttonColor,
       buttonDisabledColor:
-      Color.lerp(buttonDisabledColor, other.buttonDisabledColor, t) ??
-          buttonDisabledColor,
+          Color.lerp(buttonDisabledColor, other.buttonDisabledColor, t) ??
+              buttonDisabledColor,
       borderEnabledColor:
-      Color.lerp(borderEnabledColor, other.borderEnabledColor, t) ??
-          borderEnabledColor,
+          Color.lerp(borderEnabledColor, other.borderEnabledColor, t) ??
+              borderEnabledColor,
     );
   }
 }

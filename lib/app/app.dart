@@ -23,7 +23,6 @@ class App extends StatefulWidget {
 class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
   Locale? locale;
 
-
   @override
   Widget buildWidget(BuildContext context) {
     AppRouter.init();
@@ -36,46 +35,37 @@ class _AppState extends BaseState<AppScreenState, AppBloc, AppSR, App> {
         minTextAdapt: true,
         splitScreenMode: false,
         builder: (context, child) {
-        return blocConsumer(
-          stateListener: (state) {
-          return MaterialApp.router(
-            debugShowCheckedModeBanner: false,
-            builder: (context, widget) {
-              return MediaQuery(
-                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                
-                
-                child: widget ?? const SizedBox(),
-                
+          return blocConsumer(
+            stateListener: (state) {
+              return MaterialApp.router(
+                debugShowCheckedModeBanner: false,
+                builder: (context, widget) {
+                  return MediaQuery(
+                    data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                    child: widget ?? const SizedBox(),
+                  );
+                },
+                scrollBehavior: const CupertinoScrollBehavior(),
+                title: '',
+                theme: createLightTheme(),
+                darkTheme: createDarkTheme(),
+                themeMode: state.themeMode,
+                routeInformationProvider:
+                    AppRouter.router.routeInformationProvider,
+                routeInformationParser: AppRouter.router.routeInformationParser,
+                routerDelegate: AppRouter.router.routerDelegate,
+                locale: locale,
+                localizationsDelegates: const [
+                  S.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                supportedLocales: S.delegate.supportedLocales,
+                onGenerateTitle: (context) => S.of(context).title,
               );
             },
-            scrollBehavior: const CupertinoScrollBehavior(),
-            title: '',
-            theme: createLightTheme(),
-            darkTheme: createDarkTheme(),
-            themeMode: state.themeMode,
-            routeInformationProvider: AppRouter.router.routeInformationProvider,
-            routeInformationParser: AppRouter.router.routeInformationParser,
-            
-            routerDelegate: AppRouter.router.routerDelegate,
-            
-            locale: locale,
-            
-            localizationsDelegates: const [
-              S.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: S.delegate.supportedLocales,
-            onGenerateTitle: (context) => S.of(context).title,
-            
-
-            
           );
-          },
-          
-        );
         },
       ),
     );

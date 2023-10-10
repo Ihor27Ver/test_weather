@@ -12,9 +12,9 @@ import 'package:test_task_weather/core/arch/bloc/stream_listener.dart';
 typedef ListenDelegate<S> = void Function(BuildContext context, S state);
 typedef StateListener<S> = Widget Function(S state);
 typedef SingleResultListener<SR> = void Function(
-    BuildContext context,
-    SR singleResult,
-    );
+  BuildContext context,
+  SR singleResult,
+);
 
 abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
     W extends StatefulWidget> extends State<W> {
@@ -42,7 +42,6 @@ abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
 
   @override
   void dispose() {
-    
     context.loaderOverlay.hide();
     if (_bloc != null) {
       _bloc?.dispose();
@@ -92,10 +91,8 @@ abstract class BaseState<S, B extends BaseBloc<dynamic, S, SR>, SR,
   void onBlocCreated(BuildContext context, B bloc) {
     bloc.progressStream.listen((event) async {
       if (event) {
-        
         context.loaderOverlay.show();
       } else {
-        
         context.loaderOverlay.hide();
       }
     });

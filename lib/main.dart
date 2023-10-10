@@ -15,38 +15,40 @@ import 'package:test_task_weather/core/arch/bloc/app_bloc_observer.dart';
 import 'package:test_task_weather/core/di/services.dart';
 
 Future<void> main() async {
-    await runZonedGuarded(() async {
-    WidgetsFlutterBinding.ensureInitialized();
+  await runZonedGuarded(
+    () async {
+      WidgetsFlutterBinding.ensureInitialized();
 
-    await AppInitialization.I.initApp();
+      await AppInitialization.I.initApp();
 
-    // await SystemChrome.setPreferredOrientations([
-    //   //DeviceOrientation.portraitUp,
-    //   //DeviceOrientation.portraitDown,
-    //   //DeviceOrientation.landscapeLeft,
-    //   //DeviceOrientation.landscapeRight
-    // ]);
+      // await SystemChrome.setPreferredOrientations([
+      //   //DeviceOrientation.portraitUp,
+      //   //DeviceOrientation.portraitDown,
+      //   //DeviceOrientation.landscapeLeft,
+      //   //DeviceOrientation.landscapeRight
+      // ]);
 
-    Bloc.observer = AppBlocObserver();
-    
-    final isAllowedToUseApp = await environmentService().initialize();
+      Bloc.observer = AppBlocObserver();
+
+      final isAllowedToUseApp = await environmentService().initialize();
       if (isAllowedToUseApp) {
         runApp(const App());
-    } else {
-      runApp(const BannedApp());
-    }
-
-    }, (error, stackTrace) {
+      } else {
+        runApp(const BannedApp());
+      }
+    },
+    (error, stackTrace) {
       if (kDebugMode) {
         print('runZonedGuarded: Caught error in root zone.\n$error');
         print(stackTrace);
       }
       //there we can add FirebaseCrashlytics recordError method
-    },)?.catchError((e, trace) {
-      if (kDebugMode) {
-        print('ERROR: $e');
-        print(trace);
-        }
-        exit(-1);
-    });
-  }
+    },
+  )?.catchError((e, trace) {
+    if (kDebugMode) {
+      print('ERROR: $e');
+      print(trace);
+    }
+    exit(-1);
+  });
+}

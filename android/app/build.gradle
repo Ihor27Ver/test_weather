@@ -58,11 +58,16 @@ android {
         versionName flutterVersionName
     }
 
+    signingConfigs {
+        signed
+    }
+
     buildTypes {
+        debug {
+            signingConfig signingConfigs.signed
+        }
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.signed
         }
     }
 }
@@ -73,4 +78,22 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+
+Properties props = new Properties()
+def propFile = file('./signing/signing.properties')
+if (propFile.canRead()) {
+    props.load(new FileInputStream(propFile))
+
+    if (props != null && props.containsKey('STORE_FILE') && props.containsKey('STORE_PASSWORD') &&
+            props.containsKey('KEY_ALIAS') && props.containsKey('KEY_PASSWORD')) {
+        android.signingConfigs.signed.storeFile = file(props['STORE_FILE'])
+        android.signingConfigs.signed.storePassword = props['STORE_PASSWORD']
+        android.signingConfigs.signed.keyAlias = props['KEY_ALIAS']
+        android.signingConfigs.signed.keyPassword = props['KEY_PASSWORD']
+    } else {
+        android.buildTypes.release.signingConfig = null
+    }
+} else {
+    android.buildTypes.release.signingConfig = null
 }

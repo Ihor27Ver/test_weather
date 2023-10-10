@@ -42,7 +42,6 @@ abstract class BaseCubitState<S, B extends BaseCubit<S, SR>, SR,
 
   @override
   void dispose() {
-    
     context.loaderOverlay.hide();
     if (_bloc != null) {
       _bloc?.dispose();
@@ -92,11 +91,9 @@ abstract class BaseCubitState<S, B extends BaseCubit<S, SR>, SR,
   void onBlocCreated(BuildContext context, B bloc) {
     bloc.progressStream.listen((event) async {
       if (event) {
-        
-      context.loaderOverlay.show();
+        context.loaderOverlay.show();
       } else {
-      
-      context.loaderOverlay.hide();
+        context.loaderOverlay.hide();
       }
     });
   }
