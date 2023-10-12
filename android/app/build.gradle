@@ -28,7 +28,8 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 // if need to use google maps - add google.maps_api_key=SECRET_KEY to local.properties
 //def googleMapsApiKey = localProperties.getProperty('google.maps_api_key')
-      
+def googleMapsApiKey = localProperties.getProperty("google.maps_api_key")
+
 android {
     namespace "my.weather.test_task_weather"
     compileSdkVersion 33
@@ -56,6 +57,10 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        manifestPlaceholders = [
+                googleMapsApiKey: googleMapsApiKey,
+                applicationName: 'my.weather.test_task_weather,'
+        ]
     }
 
     signingConfigs {

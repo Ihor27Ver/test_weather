@@ -1,10 +1,11 @@
-//@formatter:off
+
 
 import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,12 +22,10 @@ Future<void> main() async {
 
       await AppInitialization.I.initApp();
 
-      // await SystemChrome.setPreferredOrientations([
-      //   //DeviceOrientation.portraitUp,
-      //   //DeviceOrientation.portraitDown,
-      //   //DeviceOrientation.landscapeLeft,
-      //   //DeviceOrientation.landscapeRight
-      // ]);
+      await SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ]);
 
       Bloc.observer = AppBlocObserver();
 
@@ -42,7 +41,6 @@ Future<void> main() async {
         print('runZonedGuarded: Caught error in root zone.\n$error');
         print(stackTrace);
       }
-      //there we can add FirebaseCrashlytics recordError method
     },
   )?.catchError((e, trace) {
     if (kDebugMode) {

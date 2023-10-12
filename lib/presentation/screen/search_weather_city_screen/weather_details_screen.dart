@@ -5,21 +5,21 @@ import 'package:go_router/go_router.dart';
 import 'package:test_task_weather/core/arch/bloc/base_block_state.dart';
 import 'package:test_task_weather/presentation/screen/search_weather_city_screen/bloc/search_weather_city_screen_imports.dart';
 
-class SearchWeatherCityScreen extends StatefulWidget {
-  const SearchWeatherCityScreen({
+class WeatherDetailsScreen extends StatefulWidget {
+  const WeatherDetailsScreen({
     super.key,
   });
 
   @override
-  State<SearchWeatherCityScreen> createState() =>
-      _SearchWeatherCityScreenState();
+  State<WeatherDetailsScreen> createState() =>
+      _WeatherDetailsScreenState();
 }
 
-class _SearchWeatherCityScreenState extends BaseState<
+class _WeatherDetailsScreenState extends BaseState<
     SearchWeatherCityScreenState,
     SearchWeatherCityScreenBloc,
     SearchWeatherCityScreenSR,
-    SearchWeatherCityScreen> {
+    WeatherDetailsScreen> {
   @override
   Widget buildWidget(BuildContext context) {
     return srObserver(
