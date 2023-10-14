@@ -1,48 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:test_task_weather/presentation/style/theme/theme_extension/ext.dart';
+import 'package:test_task_weather/presentation/style/theme/theme_imports.dart';
 
 class AppStandardButton extends StatelessWidget {
-  final VoidCallback onPressed;
-  final String value;
-  final Color? color;
-  final Color? disabledColor;
-  final bool enabled;
-  final bool expanded;
-  final double? height;
-  final double? width;
-  final EdgeInsetsGeometry? padding;
+  final VoidCallback _onPressed;
+  final double? _width;
+  final double? _height;
+  final Widget _widget;
+  final Color? _backgroundColor;
+  final Color? _borderColor;
+  final double _borderRadius;
+  final Color? _shadowColor;
+  final double? elevationButton;
 
   const AppStandardButton({
-    required this.onPressed,
-    required this.value,
-    this.enabled = true,
-    this.expanded = false,
-    this.color,
-    this.disabledColor,
-    this.padding,
-    this.width,
-    this.height,
-    super.key,
-  });
+    required VoidCallback onPressed,
+    required Widget widget,
+    Color? borderColor,
+    double? width,
+    double? height,
+
+    Color? shadowColor,
+    Color? backgroundColor = AppColors.greenDark,
+    borderRadius=5.0,
+
+    super.key, this.elevationButton,
+  })  : _widget = widget,
+        _backgroundColor = backgroundColor,
+        _width = width,
+        _height = height,
+        _borderColor = borderColor,
+        _onPressed = onPressed,
+        _borderRadius=borderRadius,
+        _shadowColor=shadowColor;
 
   @override
   Widget build(BuildContext context) {
+
     return SizedBox(
-      width: expanded ? double.infinity : width,
-      height: height,
-      child: FilledButton(
-          style: FilledButton.styleFrom(
-            backgroundColor: color ?? context.appColors.buttonColor,
-            disabledBackgroundColor:
-                disabledColor ?? context.appColors.buttonDisabledColor,
-            padding: padding ?? EdgeInsets.zero,
+      width: _width ??1.sw,
+      height: _height ?? 54.h,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+
+          shadowColor: _shadowColor,
+          side:  BorderSide(
+            width: 1.spMin,
+            color: _borderColor ?? Colors.transparent,
           ),
-          onPressed: enabled ? onPressed : null,
-          child: Text(
-            value,
-            style: context.appTextStyles.button18,
-          )),
+          elevation: elevationButton,
+          backgroundColor: _backgroundColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(_borderRadius.r),
+          ),
+        ),
+        onPressed: _onPressed,
+        child: _widget,
+      ),
     );
   }
 }

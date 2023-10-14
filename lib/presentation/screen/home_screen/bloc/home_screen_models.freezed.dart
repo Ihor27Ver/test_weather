@@ -19,38 +19,32 @@ mixin _$HomeScreenEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() addMarker,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? addMarker,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? addMarker,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(HomeScreenEventInit value) init,
-    required TResult Function(HomeScreenEventAddMarker value) addMarker,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(HomeScreenEventInit value)? init,
-    TResult? Function(HomeScreenEventAddMarker value)? addMarker,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(HomeScreenEventInit value)? init,
-    TResult Function(HomeScreenEventAddMarker value)? addMarker,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,7 +108,6 @@ class _$HomeScreenEventInitImpl implements HomeScreenEventInit {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() addMarker,
   }) {
     return init();
   }
@@ -123,7 +116,6 @@ class _$HomeScreenEventInitImpl implements HomeScreenEventInit {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? addMarker,
   }) {
     return init?.call();
   }
@@ -132,7 +124,6 @@ class _$HomeScreenEventInitImpl implements HomeScreenEventInit {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? addMarker,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -145,7 +136,6 @@ class _$HomeScreenEventInitImpl implements HomeScreenEventInit {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(HomeScreenEventInit value) init,
-    required TResult Function(HomeScreenEventAddMarker value) addMarker,
   }) {
     return init(this);
   }
@@ -154,7 +144,6 @@ class _$HomeScreenEventInitImpl implements HomeScreenEventInit {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(HomeScreenEventInit value)? init,
-    TResult? Function(HomeScreenEventAddMarker value)? addMarker,
   }) {
     return init?.call(this);
   }
@@ -163,7 +152,6 @@ class _$HomeScreenEventInitImpl implements HomeScreenEventInit {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(HomeScreenEventInit value)? init,
-    TResult Function(HomeScreenEventAddMarker value)? addMarker,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -175,111 +163,6 @@ class _$HomeScreenEventInitImpl implements HomeScreenEventInit {
 
 abstract class HomeScreenEventInit implements HomeScreenEvent {
   const factory HomeScreenEventInit() = _$HomeScreenEventInitImpl;
-}
-
-/// @nodoc
-abstract class _$$HomeScreenEventAddMarkerImplCopyWith<$Res> {
-  factory _$$HomeScreenEventAddMarkerImplCopyWith(
-          _$HomeScreenEventAddMarkerImpl value,
-          $Res Function(_$HomeScreenEventAddMarkerImpl) then) =
-      __$$HomeScreenEventAddMarkerImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$HomeScreenEventAddMarkerImplCopyWithImpl<$Res>
-    extends _$HomeScreenEventCopyWithImpl<$Res, _$HomeScreenEventAddMarkerImpl>
-    implements _$$HomeScreenEventAddMarkerImplCopyWith<$Res> {
-  __$$HomeScreenEventAddMarkerImplCopyWithImpl(
-      _$HomeScreenEventAddMarkerImpl _value,
-      $Res Function(_$HomeScreenEventAddMarkerImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$HomeScreenEventAddMarkerImpl implements HomeScreenEventAddMarker {
-  const _$HomeScreenEventAddMarkerImpl();
-
-  @override
-  String toString() {
-    return 'HomeScreenEvent.addMarker()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$HomeScreenEventAddMarkerImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function() addMarker,
-  }) {
-    return addMarker();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function()? addMarker,
-  }) {
-    return addMarker?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function()? addMarker,
-    required TResult orElse(),
-  }) {
-    if (addMarker != null) {
-      return addMarker();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(HomeScreenEventInit value) init,
-    required TResult Function(HomeScreenEventAddMarker value) addMarker,
-  }) {
-    return addMarker(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(HomeScreenEventInit value)? init,
-    TResult? Function(HomeScreenEventAddMarker value)? addMarker,
-  }) {
-    return addMarker?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(HomeScreenEventInit value)? init,
-    TResult Function(HomeScreenEventAddMarker value)? addMarker,
-    required TResult orElse(),
-  }) {
-    if (addMarker != null) {
-      return addMarker(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class HomeScreenEventAddMarker implements HomeScreenEvent {
-  const factory HomeScreenEventAddMarker() = _$HomeScreenEventAddMarkerImpl;
 }
 
 /// @nodoc
@@ -435,25 +318,27 @@ abstract class _LoadFinished implements HomeScreenSR {
 /// @nodoc
 mixin _$HomeScreenState {
   Position? get myPosition => throw _privateConstructorUsedError;
+  String get mapStyle => throw _privateConstructorUsedError;
   Set<Marker> get markers => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            Position? myPosition, Set<Marker> markers, bool isLoading)
+    required TResult Function(Position? myPosition, String mapStyle,
+            Set<Marker> markers, bool isLoading)
         data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            Position? myPosition, Set<Marker> markers, bool isLoading)?
+    TResult? Function(Position? myPosition, String mapStyle,
+            Set<Marker> markers, bool isLoading)?
         data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Position? myPosition, Set<Marker> markers, bool isLoading)?
+    TResult Function(Position? myPosition, String mapStyle, Set<Marker> markers,
+            bool isLoading)?
         data,
     required TResult orElse(),
   }) =>
@@ -486,7 +371,11 @@ abstract class $HomeScreenStateCopyWith<$Res> {
           HomeScreenState value, $Res Function(HomeScreenState) then) =
       _$HomeScreenStateCopyWithImpl<$Res, HomeScreenState>;
   @useResult
-  $Res call({Position? myPosition, Set<Marker> markers, bool isLoading});
+  $Res call(
+      {Position? myPosition,
+      String mapStyle,
+      Set<Marker> markers,
+      bool isLoading});
 }
 
 /// @nodoc
@@ -503,6 +392,7 @@ class _$HomeScreenStateCopyWithImpl<$Res, $Val extends HomeScreenState>
   @override
   $Res call({
     Object? myPosition = freezed,
+    Object? mapStyle = null,
     Object? markers = null,
     Object? isLoading = null,
   }) {
@@ -511,6 +401,10 @@ class _$HomeScreenStateCopyWithImpl<$Res, $Val extends HomeScreenState>
           ? _value.myPosition
           : myPosition // ignore: cast_nullable_to_non_nullable
               as Position?,
+      mapStyle: null == mapStyle
+          ? _value.mapStyle
+          : mapStyle // ignore: cast_nullable_to_non_nullable
+              as String,
       markers: null == markers
           ? _value.markers
           : markers // ignore: cast_nullable_to_non_nullable
@@ -531,7 +425,11 @@ abstract class _$$HomeScreenStateDataImplCopyWith<$Res>
       __$$HomeScreenStateDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Position? myPosition, Set<Marker> markers, bool isLoading});
+  $Res call(
+      {Position? myPosition,
+      String mapStyle,
+      Set<Marker> markers,
+      bool isLoading});
 }
 
 /// @nodoc
@@ -546,6 +444,7 @@ class __$$HomeScreenStateDataImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? myPosition = freezed,
+    Object? mapStyle = null,
     Object? markers = null,
     Object? isLoading = null,
   }) {
@@ -554,6 +453,10 @@ class __$$HomeScreenStateDataImplCopyWithImpl<$Res>
           ? _value.myPosition
           : myPosition // ignore: cast_nullable_to_non_nullable
               as Position?,
+      mapStyle: null == mapStyle
+          ? _value.mapStyle
+          : mapStyle // ignore: cast_nullable_to_non_nullable
+              as String,
       markers: null == markers
           ? _value._markers
           : markers // ignore: cast_nullable_to_non_nullable
@@ -571,6 +474,7 @@ class __$$HomeScreenStateDataImplCopyWithImpl<$Res>
 class _$HomeScreenStateDataImpl extends HomeScreenStateData {
   _$HomeScreenStateDataImpl(
       {this.myPosition,
+      this.mapStyle = '',
       final Set<Marker> markers = const {},
       this.isLoading = false})
       : _markers = markers,
@@ -578,6 +482,9 @@ class _$HomeScreenStateDataImpl extends HomeScreenStateData {
 
   @override
   final Position? myPosition;
+  @override
+  @JsonKey()
+  final String mapStyle;
   final Set<Marker> _markers;
   @override
   @JsonKey()
@@ -593,7 +500,7 @@ class _$HomeScreenStateDataImpl extends HomeScreenStateData {
 
   @override
   String toString() {
-    return 'HomeScreenState.data(myPosition: $myPosition, markers: $markers, isLoading: $isLoading)';
+    return 'HomeScreenState.data(myPosition: $myPosition, mapStyle: $mapStyle, markers: $markers, isLoading: $isLoading)';
   }
 
   @override
@@ -603,13 +510,15 @@ class _$HomeScreenStateDataImpl extends HomeScreenStateData {
             other is _$HomeScreenStateDataImpl &&
             (identical(other.myPosition, myPosition) ||
                 other.myPosition == myPosition) &&
+            (identical(other.mapStyle, mapStyle) ||
+                other.mapStyle == mapStyle) &&
             const DeepCollectionEquality().equals(other._markers, _markers) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, myPosition,
+  int get hashCode => Object.hash(runtimeType, myPosition, mapStyle,
       const DeepCollectionEquality().hash(_markers), isLoading);
 
   @JsonKey(ignore: true)
@@ -622,32 +531,33 @@ class _$HomeScreenStateDataImpl extends HomeScreenStateData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            Position? myPosition, Set<Marker> markers, bool isLoading)
+    required TResult Function(Position? myPosition, String mapStyle,
+            Set<Marker> markers, bool isLoading)
         data,
   }) {
-    return data(myPosition, markers, isLoading);
+    return data(myPosition, mapStyle, markers, isLoading);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            Position? myPosition, Set<Marker> markers, bool isLoading)?
+    TResult? Function(Position? myPosition, String mapStyle,
+            Set<Marker> markers, bool isLoading)?
         data,
   }) {
-    return data?.call(myPosition, markers, isLoading);
+    return data?.call(myPosition, mapStyle, markers, isLoading);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Position? myPosition, Set<Marker> markers, bool isLoading)?
+    TResult Function(Position? myPosition, String mapStyle, Set<Marker> markers,
+            bool isLoading)?
         data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(myPosition, markers, isLoading);
+      return data(myPosition, mapStyle, markers, isLoading);
     }
     return orElse();
   }
@@ -684,12 +594,15 @@ class _$HomeScreenStateDataImpl extends HomeScreenStateData {
 abstract class HomeScreenStateData extends HomeScreenState {
   factory HomeScreenStateData(
       {final Position? myPosition,
+      final String mapStyle,
       final Set<Marker> markers,
       final bool isLoading}) = _$HomeScreenStateDataImpl;
   HomeScreenStateData._() : super._();
 
   @override
   Position? get myPosition;
+  @override
+  String get mapStyle;
   @override
   Set<Marker> get markers;
   @override

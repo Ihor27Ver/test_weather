@@ -2,7 +2,6 @@ import 'package:get_it/get_it.dart';
 
 import 'package:test_task_weather/core/di/app.dart';
 import 'package:test_task_weather/core/di/injection.dart';
-import 'package:test_task_weather/core/di/services.dart';
 
 class AppInitialization {
   static final AppInitialization _instance =

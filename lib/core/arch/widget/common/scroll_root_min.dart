@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 class ScrollRootMin extends StatelessWidget {
   const ScrollRootMin({
-    super.key,
-    required this.child,
+    required this.child, super.key,
     this.physics,
   });
 
@@ -13,7 +12,7 @@ class ScrollRootMin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints viewportConstraints) {
+      builder: ( context,  viewportConstraints) {
         return SingleChildScrollView(
           physics: physics ?? const BouncingScrollPhysics(),
           child: ConstrainedBox(

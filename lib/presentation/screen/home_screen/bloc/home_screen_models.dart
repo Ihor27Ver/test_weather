@@ -7,7 +7,6 @@ part 'home_screen_models.freezed.dart';
 @freezed
 class HomeScreenEvent with _$HomeScreenEvent {
   const factory HomeScreenEvent.init() = HomeScreenEventInit;
-  const factory HomeScreenEvent.addMarker() = HomeScreenEventAddMarker;
 }
 
 @freezed
@@ -23,6 +22,7 @@ class HomeScreenState with _$HomeScreenState {
 
   factory HomeScreenState.data({
     Position? myPosition,
+  @Default('') String mapStyle,
     @Default({}) Set<Marker> markers,
     @Default(false) bool isLoading,
   }) = HomeScreenStateData;

@@ -269,6 +269,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Map`
+  String get map {
+    return Intl.message(
+      'Map',
+      name: 'map',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get search {
+    return Intl.message(
+      'Search',
+      name: 'search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Location`
+  String get location {
+    return Intl.message(
+      'Location',
+      name: 'location',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter city...`
+  String get enterCity {
+    return Intl.message(
+      'Enter city...',
+      name: 'enterCity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter address`
+  String get enterAddress {
+    return Intl.message(
+      'Enter address',
+      name: 'enterAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `max`
+  String get max {
+    return Intl.message(
+      'max',
+      name: 'max',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `min`
+  String get min {
+    return Intl.message(
+      'min',
+      name: 'min',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Precipitation`
+  String get probabilityPrecipitation {
+    return Intl.message(
+      'Precipitation',
+      name: 'probabilityPrecipitation',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

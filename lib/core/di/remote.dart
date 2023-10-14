@@ -15,12 +15,12 @@ void registerRemote(GetIt getIt) {
       dioClientModule.makeDioErrorHandler,
     )
     ..registerLazySingleton<ApiClient>(
-      () => dioClientModule.makeApiClient(DioConst.timeApiBaseUrl),
-      instanceName: DioConst.timeApiInstance,
+      () => dioClientModule.makeApiClient(DioConst.weatherApiBaseUrl),
+      instanceName: DioConst.weatherApiInstance,
     ); //{remote end}
 }
 
 ApiClient apiClientTime() =>
-    GetIt.I.get<ApiClient>(instanceName: DioConst.timeApiInstance);
+    GetIt.I.get<ApiClient>(instanceName: DioConst.weatherApiInstance);
 
 class _DioClientModule extends DioClientModule {}

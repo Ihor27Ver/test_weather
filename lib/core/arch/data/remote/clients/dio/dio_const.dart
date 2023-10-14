@@ -1,10 +1,7 @@
 class DioConst {
-  static const String jsonPlaceholderInstance = 'jsonPlaceholder';
-  static const String timeApiInstance = 'timeApi';
+  static const String weatherApiInstance = 'weatherApi';
 
-  static const String jsonPlaceholderBaseUrl =
-      'https://jsonplaceholder.typicode.com';
-  static const String timeApiBaseUrl = 'http://worldclockapi.com';
+  static const String weatherApiBaseUrl = 'https://api.open-meteo.com/v1/';
 
 //{dio const end}
 }

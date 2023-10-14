@@ -33,6 +33,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "appName": MessageLookupByLibrary.simpleMessage("Arch Sample"),
         "commonImageEditor":
             MessageLookupByLibrary.simpleMessage("Image editor"),
+        "enterAddress": MessageLookupByLibrary.simpleMessage("Enter address"),
+        "enterCity": MessageLookupByLibrary.simpleMessage("Enter city..."),
         "errorEmail": MessageLookupByLibrary.simpleMessage("Email not valid"),
         "errorEmptyField": MessageLookupByLibrary.simpleMessage("Empty Field"),
         "errorPasswordLetters": MessageLookupByLibrary.simpleMessage(
@@ -57,6 +59,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Camera video"),
         "imageSourceVideoGalleryBtn":
             MessageLookupByLibrary.simpleMessage("Gallery video"),
+        "location": MessageLookupByLibrary.simpleMessage("Location"),
+        "map": MessageLookupByLibrary.simpleMessage("Map"),
+        "max": MessageLookupByLibrary.simpleMessage("max"),
+        "min": MessageLookupByLibrary.simpleMessage("min"),
+        "probabilityPrecipitation":
+            MessageLookupByLibrary.simpleMessage("Precipitation"),
+        "search": MessageLookupByLibrary.simpleMessage("Search"),
         "title": MessageLookupByLibrary.simpleMessage("Arch Sample"),
         "undefinedData": MessageLookupByLibrary.simpleMessage("N/A")
       };

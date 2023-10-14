@@ -1,122 +1,119 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:test_task_weather/core/assets.dart';
+import 'package:test_task_weather/core/di/services.dart';
+import 'package:test_task_weather/core/router/app_router.dart';
+import 'package:test_task_weather/domain/entity/weather_details_screen_param/weather_details_screen_param.dart';
+
+import 'package:test_task_weather/util/custom_marker.dart';
+
 
 class GoogleMapWidget extends StatefulWidget {
-  const GoogleMapWidget({Key? key}) : super(key: key);
+  final Position? userPosition;
+  final String mapStyle;
+  final Set<Marker> marker;
+
+  const GoogleMapWidget(
+      {required this.mapStyle,
+      required this.marker,
+      super.key,
+      this.userPosition});
 
   @override
   State<GoogleMapWidget> createState() => _GoogleMapWidgetState();
 }
 
 class _GoogleMapWidgetState extends State<GoogleMapWidget> {
+  late Position? _userPosition;
 
-  final Completer<GoogleMapController> _controller = Completer();
-  final Completer<Position> _initPosition = Completer();
+  final Set<Marker> _markers = <Marker>{};
+  late BitmapDescriptor _marker;
   late String _mapStyle;
 
   @override
   void initState() {
-    rootBundle.loadString('assets/map/map_style.txt').then((string) {
-      _mapStyle = string;
-    });
-    _getInitialPosition();
+    _userPosition = widget.userPosition;
+    _mapStyle = widget.mapStyle;
+    _markers.addAll(widget.marker);
+
+    _getCustomIcon();
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
     return GoogleMap(
+      onLongPress: (latLng) {
+        _handleLongPress(latLng, context);
+      },
+      myLocationEnabled: true,
       initialCameraPosition: CameraPosition(
         target: LatLng(
-         -33.8698439,
-          151.2082848,
+          _userPosition?.latitude ?? -33.8698439,
+          _userPosition?.longitude ?? 151.2082848,
         ),
-        zoom: 14.4746,
+        zoom: 14,
       ),
+      markers: _markers,
       mapType: MapType.normal,
       onMapCreated: (controller) async {
-        await _initializeLocation(controller);
-        await controller.setMapStyle(_mapStyle);
+        if (_mapStyle.isNotEmpty) {
+          await controller.setMapStyle(_mapStyle);
+        }
       },
-
       myLocationButtonEnabled: false,
       zoomControlsEnabled: false,
     );
   }
 
-  Future<Position?> _getCurrentLocation() async {
-    await Geolocator.requestPermission();
-    final locationPermission = await Geolocator.checkPermission();
-    if(locationPermission == LocationPermission.denied){
-      return null;
-    }
+  Future<void> _handleLongPress(LatLng latLng, BuildContext context) async {
+    final todayWeatherEntity =
+        await weatherService().getTodayWeather(latLng: latLng);
+    final placeName = await getPlaceName(latLng);
 
-    final lastLocation = await Geolocator.getLastKnownPosition();
-    if (lastLocation == null) {
-      return Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.low,
-      );
-    } else {
-      return lastLocation;
-    }
-  }
-
-  Future<void> _getInitialPosition() async {
-    final isLocationEnabled = await Geolocator.isLocationServiceEnabled();
-
-    if (!isLocationEnabled) {
-      await Geolocator.openLocationSettings();
-      return;
-    }
-    final locationPermission = await Geolocator.checkPermission();
-    switch (locationPermission) {
-      case LocationPermission.denied:
-        {
-          final requestResult = await Geolocator.requestPermission();
-          if (requestResult == LocationPermission.denied ||
-              requestResult == LocationPermission.deniedForever) {
-            return;
-          }
-          break;
-        }
-      case LocationPermission.deniedForever:
-        {
-          await Geolocator.openLocationSettings();
-          return;
-        }
-      default:
-        break;
-    }
-    final location = await Geolocator.getCurrentPosition();
-    _initPosition.complete(location);
-  }
-
-  Future<void> _initializeLocation(
-      GoogleMapController controller,
-      ) async {
-    final currentLocation = await _getCurrentLocation();
-    if (currentLocation != null) {
-      final cameraPosition = CameraPosition(
-        target: LatLng(
-          currentLocation.latitude,
-          currentLocation.longitude,
-        ),
-        zoom: 15,
-      );
-      Future.delayed(const Duration(seconds: 2), () {
-        controller.animateCamera(
-          CameraUpdate.newCameraPosition(
-            cameraPosition,
-          ),
-        );
+    if (context.mounted) {
+      setState(() {
+        _markers
+          ..clear()
+          ..add(Marker(
+            icon: _marker,
+            markerId: MarkerId(latLng.toString()),
+            position: latLng,
+            infoWindow: InfoWindow(
+                title: placeName,
+                snippet:
+                    ' ${todayWeatherEntity.temperature} ${todayWeatherEntity.temperatureUnits}',
+                onTap: () {
+                  context.goNamed(AppRouter.weatherDetailsPage,
+                      extra:WeatherDetailsScreenParam( cityName: placeName, latitude: latLng.latitude, longitude: latLng.longitude,) );
+                }),
+          ));
       });
-
     }
   }
 
+  Future<void> _getCustomIcon() async {
+    final markIcons = await CustomMarker().getImages(Assets.icMarker, 100);
+    _marker = BitmapDescriptor.fromBytes(markIcons);
+  }
+
+  Future<String> getPlaceName(LatLng latLng) async {
+    try {
+      final placeMarks =
+          await placemarkFromCoordinates(latLng.latitude, latLng.longitude);
+      if (placeMarks.isNotEmpty) {
+        final place = placeMarks[0];
+        return '${place.locality}, ${place.country}';
+      }
+      return 'No address available';
+    } catch (e) {
+      print(e);
+      return 'Error fetching address';
+    }
+  }
 }

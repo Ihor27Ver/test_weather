@@ -1,6 +1,15 @@
 # Clean Architecture Project test_task_weather
 
+# Using GOOGLE MAPS API KEY
+
+- configure your GOOGLE MAPS API KEY;
+- open or create the file .env;
+- pass your GOOGLE MAPS API KEY;
+- open or create local.properties ;
+- pass your GOOGLE MAPS API KEY; 
+
 ## Setup Template
+
 
 * Go to `core/app/app_initialization.dart` and put your initializations in `initApp()` function;
 * Modify `core/arch/data/remote/error/default_api_error.dart` to your default api response model;

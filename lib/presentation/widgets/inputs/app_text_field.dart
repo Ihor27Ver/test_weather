@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:test_task_weather/presentation/style/theme/theme_extension/ext.dart';
+import 'package:test_task_weather/presentation/style/theme/theme_imports.dart';
 
 class AppTextField extends StatelessWidget {
   final TextEditingController? controller;
   final bool enabled;
-  final String label;
+  final String hintText;
   final TextInputType? keyboardType;
   final BorderRadius? borderRadius;
-  final TextStyle? labelStyle;
+  final TextStyle? hintStyle;
+  final TextStyle? textStyle;
   final Color? fillColor;
+  final Color? enabledBorderColor;
+  final Color? disabledBorderColor;
+  final Color? focusedBorderColor;
   final bool obscureText;
   final List<TextInputFormatter>? inputFormatters;
   final VoidCallback? onEditingComplete;
@@ -18,12 +23,12 @@ class AppTextField extends StatelessWidget {
   final Function(String)? onSubmitted;
 
   const AppTextField({
-    required this.label,
+    required this.hintText,
     this.enabled = true,
     this.controller,
     this.keyboardType,
     this.borderRadius,
-    this.labelStyle,
+    this.hintStyle,
     this.fillColor,
     this.obscureText = false,
     this.inputFormatters,
@@ -31,6 +36,10 @@ class AppTextField extends StatelessWidget {
     this.onChanged,
     this.onSubmitted,
     super.key,
+    this.textStyle,
+    this.enabledBorderColor,
+    this.disabledBorderColor,
+    this.focusedBorderColor,
   });
 
   @override
@@ -41,6 +50,7 @@ class AppTextField extends StatelessWidget {
       keyboardType: keyboardType,
       obscureText: obscureText,
       inputFormatters: inputFormatters,
+      style: textStyle ?? context.appTextStyles.fs18,
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: borderRadius ?? BorderRadius.circular(10),
@@ -48,26 +58,26 @@ class AppTextField extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
           borderRadius: borderRadius ?? BorderRadius.circular(10),
           borderSide: BorderSide(
-            color: context.appColors.borderEnabledColor,
+            color: enabledBorderColor ?? AppColors.white,
           ),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: borderRadius ?? BorderRadius.circular(10),
           borderSide: BorderSide(
-            color: context.appColors.borderEnabledColor.withOpacity(0.2),
+            color: disabledBorderColor ?? AppColors.white,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: borderRadius ?? BorderRadius.circular(10),
           borderSide: BorderSide(
-            color: context.appColors.buttonColor,
+            color: focusedBorderColor ?? AppColors.white,
           ),
         ),
-        labelText: label,
-        labelStyle: enabled
-            ? labelStyle ?? context.appTextStyles.fs18
-            : labelStyle?.copyWith(
-                    color: labelStyle?.color?.withOpacity(0.2)) ??
+        labelText: null,
+        hintText: hintText,
+        hintStyle: enabled
+            ? hintStyle ?? context.appTextStyles.fs18
+            : hintStyle?.copyWith(color: hintStyle?.color?.withOpacity(0.2)) ??
                 context.appTextStyles.fs18?.copyWith(
                   color: context.appTextStyles.fs18?.color?.withOpacity(0.2),
                 ),

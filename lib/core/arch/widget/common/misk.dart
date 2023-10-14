@@ -8,8 +8,7 @@ class Delimiter extends SizedBox {
 
 class ClickableWidget extends StatelessWidget {
   const ClickableWidget({
-    super.key,
-    required this.child,
+    required this.child, super.key,
     this.onTap,
     this.color = Colors.transparent,
     this.splashColor,

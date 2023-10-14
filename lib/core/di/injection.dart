@@ -11,11 +11,12 @@ import 'package:test_task_weather/core/di/usecase.dart';
 
 void initializeDi(GetIt getIt) {
   registerLocal(getIt);
-  registerServices(getIt);
   registerRemote(getIt);
   registerSources(getIt);
   registerRepositories(getIt);
-  registerApp(getIt);
   registerUseCases(getIt);
+  registerServices(getIt);
+  registerApp(getIt);
+
   registerBloc(getIt);
 }
